@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/shop.css}">
+</head>
+
+<body>
+<div layout:fragment="content" style="background-color: black;">
+
+    <!-- 배너 섹션 -->
+    <section class="shop-banner">
+        <img src="https://t1shopgg.cafe24.com/ado/images/top_banner_pc.jpg" alt="Shop Banner" class="banner-image">
+        <div class="overlay">
+            <h1 th:text="${categoryName == 'shop' ? 'SHOP-ALL' : categoryName.toUpperCase()}">SHOP</h1>
+        </div>
+    </section>
+
+    <!-- 카테고리 네비게이션 -->
+    <nav class="shop-categories">
+        <a th:href="@{/category/shop/112}" th:classappend="${categoryName == 'shop'} ? 'active'" class="category-link">SHOP</a>
+        <a th:href="@{/category/team-kit/113}" th:classappend="${categoryName == 'team-kit'} ? 'active'" class="category-link">TEAM KIT</a>
+        <a th:href="@{/category/collection/114}" th:classappend="${categoryName == 'collection'} ? 'active'" class="category-link">COLLECTION</a>
+        <a th:href="@{/category/collaboration/42}" th:classappend="${categoryName == 'collaboration'} ? 'active'" class="category-link">COLLABORATION</a>
+        <a th:href="@{/category/sale/64}" th:classappend="${categoryName == 'sale'} ? 'active'" class="category-link">SALE</a>
+    </nav>
+
+    <!-- 카테고리 및 ID 표시 -->
+    <!--<h1 th:text="'Category: ' + ${categoryName.toUpperCase()} + ', ID: ' + ${id}"></h1>-->
+    <!-- 아이템 목록 -->
+    <section class="product-grid">
+        <div th:each="item : ${items}" class="product-item">
+            <!-- 상품 상세 페이지로 이동하는 링크 -->
+            <a th:href="@{/item/{itemId}(itemId=${item.id})}" class="product-link">
+                <img th:src="@{${item.imgUrl}}" alt="Product Image" class="product-image">
+                <div class="product-info">
+                    <h3 th:text="${item.itemNm}" class="product-name">Product Name</h3>
+                    <p th:text="${item.price} + ' 원'" class="product-price">Product Price</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+
+    <!-- 페이지네이션 -->
+    <div th:with="start=${(items.number/maxPage) * maxPage + 1},
+    end=(${(items.totalPages == 0) ? 1 : (start + (maxPage-1) < items.totalPages ?
+    start + (maxPage-1) : items.totalPages)})">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:classappend="${items.first} ? 'disabled'">
+                <a th:href="@{|/category/${categoryName}/${id}?page=${items.number - 1}&searchQuery=${itemSearchDto != null ? itemSearchDto.searchQuery : ''}|}" aria-label="Previous" class="page-link">
+                    <span aria-hidden="true">Previous</span>
+                </a>
+            </li>
+
+            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${items.number eq page-1} ? 'active' : ''">
+                <a th:href="@{|/category/${categoryName}/${id}?page=${page-1}&searchQuery=${itemSearchDto != null ? itemSearchDto.searchQuery : ''}|}" th:text="${page}" class="page-link"></a>
+            </li>
+
+            <li class="page-item" th:classappend="${items.last} ? 'disabled'">
+                <a th:href="@{|/category/${categoryName}/${id}?page=${items.number + 1}&searchQuery=${itemSearchDto != null ? itemSearchDto.searchQuery : ''}|}" aria-label="Next" class="page-link">
+                    <span aria-hidden="true">Next</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+</div>
+</body>
+
+</html>

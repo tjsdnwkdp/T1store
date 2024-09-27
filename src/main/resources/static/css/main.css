@@ -1,0 +1,215 @@
+.main-title {
+    position: relative;
+    text-align: center;
+    padding: 40px 0;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+}
+
+.position_title {
+    color: #fff;
+    opacity: 0.1; /* 더 희미하게 설정 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+    font-size: 32px; /* 글씨 크기 더 줄이기 */
+    font-weight: bold;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* 그림자 투명도 줄이기 */
+    white-space: nowrap; /* 텍스트가 줄 바꿈 없이 한 줄로 표시되도록 설정 */
+}
+
+.hero-section {
+    position: relative;
+    text-align: left;
+    color: white;
+}
+.map-section{
+    position: relative;
+    text-align: left;
+    color: white;
+}
+.map-section > div {
+    position: relative; /* 컨테이너에 상대 위치 설정 */
+    width: 50%; /* 너비 설정 */
+    height: 400px; /* 높이 설정 */
+    overflow: hidden; /* 이미지가 확대될 때 컨테이너 밖으로 나가지 않도록 설정 */
+}
+
+.map-section img {
+    width: 100%; /* 너비를 컨테이너 크기에 맞춤 */
+    height: 100%; /* 높이를 컨테이너 크기에 맞춤 */
+    transition: transform 0.3s ease-in-out; /* 부드러운 변형 효과를 위한 전환 설정 */
+}
+
+.map-section img:hover {
+    transform: scale(1.05); /* 이미지에 마우스를 올렸을 때 5% 확대 */
+}
+
+
+.hero-section img {
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    font-family: Roboto, sans-serif;
+    font-weight: bold;
+    position: absolute;
+    bottom: 70px;
+    left: 40px;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.overlay h1 {
+    font-size: 25px;
+    margin: 0;
+}
+
+.overlay p {
+    font-size: 16px;
+    margin: 10px 0 0;
+}
+
+.overlay2 {
+    font-family: Roboto, sans-serif;
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.overlay2 h1 {
+    font-size: 17px;
+    margin: 0;
+}
+
+.overlay2 p {
+    font-size: 10px;
+    margin: 10px 0 0;
+}
+
+
+
+.purchase-link {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: white;
+    transition: transform 0.3s ease; /* 마우스 오버 시 애니메이션 */
+    text-decoration: none;
+}
+.purchase-link:hover {
+    transform: scale(1.1); /* 마우스 오버 시 확대 효과 */
+}
+
+.purchase-link img {
+    width: 90px; /* 원하는 너비로 설정 */
+    height: auto; /* 이미지 비율을 유지 */
+    max-width: 100%; /* 부모 요소의 너비를 넘지 않도록 설정 */
+}
+
+/* main.css */
+
+.product-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 20px 0;
+}
+.product-image {
+    width: 100%; /* 이미지 너비 */
+    height: auto; /* 이미지 비율 유지 */
+    object-fit: cover; /* 이미지가 영역에 맞게 잘림 */
+}
+
+.slider-container {
+    display: flex;
+    overflow-x: hidden; /* 스크롤을 감추고 화살표 버튼으로만 이동하게 설정 */
+    scroll-behavior: smooth;
+}
+
+.slider-item {
+    flex: 0 0 25%; /* 한 줄에 4개가 나오도록 설정 */
+    max-width: 25%;
+    margin-right: 4px; /* 아이템 간의 간격을 줄이기 */
+    box-sizing: border-box;
+    background-color: #2e2d2d; /* 카드 배경색 */
+    border: 1px solid #2e2d2d; /* 카드 테두리 */
+    overflow: hidden; /* 이미지 오버플로우 숨기기 */
+    position: relative; /* 아이콘 배치를 위한 상대적 위치 */
+    overflow-y: hidden;
+}
+
+
+.slider-prev img,
+.slider-next img {
+    width: 40px; /* 이미지의 크기를 적절히 조정 */
+    height: auto;
+}
+
+
+.slider-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider-prev, .slider-next {
+    cursor: pointer;
+    background: none;
+    border: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.slider-prev {
+    left: 0;
+}
+
+.slider-next {
+    right: 0;
+}
+@media (max-width: 768px) {
+    .slider-item {
+        flex: 0 0 33.33%; /* 화면이 작아질 때 한 줄에 3개 */
+        max-width: 33.33%;
+        margin-right: 6px; /* 간격 줄이기 */
+    }
+}
+
+@media (max-width: 480px) {
+    .slider-item {
+        flex: 0 0 50%; /* 모바일에서는 한 줄에 2개 */
+        max-width: 50%;
+        margin-right: 4px; /* 간격 더 줄이기 */
+    }
+}
+.product-info {
+    padding: 15px; /* 정보 영역 패딩 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+.product-name {
+    font-size: 1.1em; /* 제품명 글자 크기 */
+    color: white; /* 제품명 색상 */
+    margin: 10px 0; /* 제품명과 가격 사이 여백 */
+}
+
+.product-price {
+    font-size: 1em; /* 가격 글자 크기 */
+    color: white; /* 가격 색상 */
+    margin: 0; /* 가격 여백 제거 */
+}
+
+.product-link {
+    text-decoration: none; /* 링크 밑줄 제거 */
+    color: inherit; /* 텍스트 색상 유지 */
+}
+
+

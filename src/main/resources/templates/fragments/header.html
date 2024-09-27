@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+
+        $(document).ready(function () {
+            $("#searchBtn").on("click", function (e) {
+                e.preventDefault(); //검색버튼 클릭 시 form 태그 전송을 막음.
+                page(0);
+            });
+        });
+
+        function page(page) {
+            var searchQuery = $("#Query").val();
+            alert(searchQuery);
+
+            location.href =
+                "/admin/items/" +
+                page +
+                "&searchQuery=" +
+                searchQuery;
+        }
+        $(document).ready(function () {
+        var path = window.location.pathname;
+        if (path.includes('/posts') || path.includes('/category/new/23')) { // 커뮤니티와 공지사항 URL 일부
+            $('.search-bar').hide(); // 검색 바 숨기기
+        }
+    });
+
+    </script>
+</th:block>
+<body>
+<div th:fragment="header">
+    <header class="header relative">
+        <!-- 상단 배너: 로그인/회원가입 -->
+        <div class="hd-banner">
+            <div class="left">
+                <a style="color: red;"> KOREA, REPUBLIC OF / KRW </a>
+            </div>
+            <div class="center">
+                <a style="color:#e2012d !important;" href="/category/new/23">NEW ARRIVALS / FAKER DENIM JACKET 재입고</a>
+            </div>
+            <div class="right">
+                <a href="/members/login" sec:authorize="isAnonymous()">LOGIN</a>
+                <a href="/members/logout" sec:authorize="isAuthenticated()">LOGOUT</a>
+                <a href="/members/new" sec:authorize="isAnonymous()">JOIN</a>
+                <a href="/orders" sec:authorize="isAuthenticated()">MY PAGE</a>
+            </div>
+        </div>
+
+        <!-- 네비게이션 바: 로고, NEW, SHOP, COMMUNITY, 검색창 -->
+        <div class="header-wrap">
+            <div class="container2" >
+                <a href="/" class="logo">
+                    <img src="https://t1shopgg.cafe24.com/ado/images/fix_logo.svg" alt="Logo">
+                </a>
+                <nav class="navigation">
+                    <ul>
+                        <li><a href="/category/new/23">NEW</a></li>
+                        <li class="dropdown">
+                            <a href="/category/shop/112" class="dropdown-toggle" id="shopLink">SHOP</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/category/team-kit/113">TEAM KIT</a></li>
+                                <li><a class="dropdown-item" href="/category/collection/114">COLLECTION</a></li>
+                                <li><a class="dropdown-item" href="/category/collaboration/42">COLLABORATION</a></li>
+                                <li><a class="dropdown-item" href="/category/sale/64">SALE</a></li>
+                            </ul>
+                        </li>
+                        <li ><a href="/posts">COMMUNITY</a></li>
+                        <li sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/item/new">상품 등록</a></li>
+                        <li sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><a href="/admin/items">상품 관리</a></li>
+                    </ul>
+                </nav>
+
+
+            </div>
+            <!-- 검색 바 및 장바구니를 포함하는 상위 컨테이너 -->
+            <div class="right-controls">
+                <!-- 검색 바: 조건적으로 표시 -->
+                <div class="search-bar-container" th:unless="${hideSearchBar}">
+                    <form th:action="@{/category/{categoryName}/{id}(categoryName=${categoryName}, id=${id})}" method="get" class="search-bar">
+                        <input type="search" name="searchQuery" id="searchQuery" class="form-control" placeholder="Search" aria-label="Search" />
+                        <button id="searchBtn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+                <!-- 장바구니 아이콘: 항상 표시 -->
+                <a href="/cart" sec:authorize="isAuthenticated()">
+                    <img th:src="@{/img/icon-shopping.png}" alt="Cart Icon" style="width: 30px; height: 30px; margin-left: 10px;">
+                </a>
+            </div>
+        </div>
+    </header>
+</div>
+</body>
+</html>

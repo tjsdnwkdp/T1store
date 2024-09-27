@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <title>공지사항 리스트</title>
+    <link rel="stylesheet" th:href="@{/css/postList.css}" />
+</head>
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        $(document).ready(function () {
+            // 페이징 버튼 클릭 시 페이지 이동
+            $(".page-link").on("click", function (e) {
+                e.preventDefault(); // 기본 동작 방지
+                var page = $(this).data("page"); // 클릭된 버튼의 data-page 속성 값 사용
+                page(page);
+            });
+        });
+
+        function page(page) {
+            var searchDateType = $("#searchDateType").val() || '';
+            var searchBy = $("#searchBy").val() || '';
+            var searchQuery = $("#Query").val() || '';
+
+            // 올바른 공지사항 리스트 URL로 설정
+            location.href = "/posts" +
+                "?page=" + page +
+                "&searchDateType=" + searchDateType +
+                "&searchBy=" + searchBy +
+                "&searchQuery=" + searchQuery;
+        }
+    </script>
+</th:block>
+<body>
+<div layout:fragment="content" class="content">
+    <h1>NOTICE</h1>
+    <div sec:authorize="hasRole('ADMIN')">
+        <a href="/posts/add" class="btn btn-primary">게시물 작성</a>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회수</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="post : ${posts.content}">
+            <td th:text="${post.id}">번호</td>
+            <td>
+                <a th:href="@{/posts/{id}(id=${post.id})}" th:text="${post.title}">제목</a>
+            </td>
+            <td th:text="${post.author.userId}">작성자</td>
+            <td th:text="${#temporals.format(post.regTime, 'yyyy-MM-dd')}">작성일</td>
+            <td th:text="${post.views}">조회수</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div th:with="start=${(posts.number / maxPage) * maxPage + 1},
+              end=${(posts.totalPages == 0) ? 1 : (start + (maxPage - 1) < posts.totalPages ? start + (maxPage - 1) : posts.totalPages)}">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:classappend="${posts.first} ? 'disabled'">
+                <a th:onclick="'javascript:page(' + (${posts.number - 1}) + ')'" aria-label="Previous" class="page-link" data-page="${posts.number - 1}">« Previous</a>
+            </li>
+            <li class="page-item" th:each="pageNum : ${#numbers.sequence(start, end)}" th:classappend="${posts.number == pageNum - 1} ? 'active' : ''">
+                <a th:onclick="'javascript:page(' + (${pageNum - 1}) + ')'" class="page-link" th:text="${pageNum}" data-page="${pageNum - 1}"></a>
+            </li>
+            <li class="page-item" th:classappend="${posts.last} ? 'disabled'">
+                <a th:onclick="'javascript:page(' + (${posts.number + 1}) + ')'" aria-label="Next" class="page-link" data-page="${posts.number + 1}">Next »</a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+</body>
+</html>

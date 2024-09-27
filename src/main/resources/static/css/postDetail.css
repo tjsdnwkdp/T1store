@@ -1,0 +1,92 @@
+body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .content {
+            width: 60%;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .notice-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #b71c1c;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .post-title {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #b71c1c;
+            padding-bottom: 10px;
+            position: relative;
+        }
+
+        .post-title::before {
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 100%;
+            background-color: #b71c1c;
+            left: -15px;
+            top: 0;
+            border-radius: 3px;
+        }
+
+        .post-content {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #b71c1c;
+            border-radius: 5px;
+            white-space: pre-wrap; /* 줄바꿈이 HTML에서 보여지도록 설정 */
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        a.btn, button.btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        a.btn:hover, button.btn:hover {
+            background-color: #0056b3;
+        }
+
+        a.btn.secondary {
+            background-color: #6c757d;
+        }
+
+        a.btn.secondary:hover {
+            background-color: #5a6268;
+        }
+
+        button.btn.delete {
+            background-color: #dc3545;
+        }
+
+        button.btn.delete:hover {
+            background-color: #c82333;
+        }

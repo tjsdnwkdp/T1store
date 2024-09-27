@@ -1,0 +1,167 @@
+/* 상단 배너 스타일링 */
+.hd-banner {
+    position: relative;
+        width: 100%;
+        overflow: hidden;
+        height: 33px;
+        background: #000000;
+        color: #E2012D;
+        font-size: 12px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 3%;
+}
+.right-controls {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.search-bar-container {
+    margin-right: 10px; /* 검색 바와 장바구니 아이콘 사이의 간격 조정 */
+}
+
+.box{
+    margin:0;
+        display: flex;
+    justify-content: flex-end
+}
+.hd-container {
+    display: flex;
+    justify-content: flex-end; /* 컨텐츠를 우측으로 정렬 */
+}
+
+.hd-banner a {
+    color: red;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.hd-banner a:hover {
+    color: white; /* 마우스 오버 시 흰색 변경 */
+}
+.container2{
+    display: flex
+}
+/* 네비게이션 바 스타일링 */
+.header-wrap {
+    background-color: white; /* 흰색 배경 */
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* 세로 중앙 정렬 */
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd; /* 경계선 */
+    box-sizing: border-box; /* 패딩을 포함한 박스 모델 사용 */
+
+}
+
+.header-wrap .logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+
+.header-wrap .logo img {
+    height: 50px; /* 로고 이미지 크기 조정 */
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* 로고와 네비게이션 사이의 간격 조정 */
+    flex-grow: 1; /* 네비게이션이 남은 공간을 차지하도록 설정 */
+}
+
+.navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navigation li {
+    padding: 0 15px;
+    display: inline-block; /* 각 메뉴를 가로로 정렬 */
+}
+
+.navigation a {
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.navigation a:hover {
+    color: red; /* 마우스 오버 시 빨간색으로 변경 */
+}
+
+/* 검색창 스타일 */
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* 검색창을 오른쪽 끝에 배치 */
+}
+
+.search-bar input[type="search"] {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.search-bar button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.search-bar button:hover {
+    background-color: red; /* 마우스 오버 시 빨간색으로 변경 */
+}
+/* 드롭다운 메뉴 스타일 */
+/* 기본적으로 드롭다운 메뉴를 숨김 */
+.dropdown-menu {
+    display: none !important;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    margin-top: 5px;
+    padding: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* dropdown이 들어있는 li 요소에 커서를 올렸을 때 드롭다운 메뉴를 표시 */
+.dropdown:hover .dropdown-menu {
+    display:block !important;
+}
+
+
+/* 드롭다운 링크 스타일 */
+.dropdown a {
+    color: black;
+    text-decoration: none;
+    padding: 5px 15px;
+    display: block;
+}
+
+/* 드롭다운 항목에 마우스를 올렸을 때 스타일 */
+
+
+/* SHOP 링크를 클릭해도 기본 드롭다운 동작을 하지 않도록 함 */
+.dropdown-toggle {
+    cursor: pointer;
+}
+/* caret (세모 표시) 제거 */
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+

@@ -1,0 +1,67 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container {
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+.h2 {
+    color: #b71c1c; /* T1 레드 */
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group-prepend {
+    background-color: #b71c1c; /* T1 레드 */
+    color: #fff;
+    border-radius: 5px 0 0 5px;
+}
+
+.form-control {
+    border-radius: 0 5px 5px 0;
+    border: 1px solid #ddd;
+}
+
+.form-select {
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.input-group-text {
+    background-color: #b71c1c; /* T1 레드 */
+    color: white;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #b71c1c; /* T1 레드 */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #900c3f; /* 어두운 T1 레드 */
+}
+
+.fieldError {
+    color: #bd2130;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.imageFile.form-control {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
